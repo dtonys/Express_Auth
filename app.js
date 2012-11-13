@@ -3,21 +3,45 @@
  * Module dependencies.
  */
 
-var express = require('express'),
-  routes = require('./routes'),
-  api = require('./routes/api');
+var express = require('express');
+var routes = require('./routes');
+var api = require('./routes/api');
+var dbconfig = require('./db_config');
+var MongoStore = require('connect-mongo')(express);
 
 var app = module.exports = express();
 
+
 // Configuration
+//mongodb
+dbconfig.init();
+
+var conf = {
+  db: {
+    db: 'myDb',
+    host: '192.168.1.111',
+    port: 6646,  // optional, default: 27017
+    username: 'admin', // optional
+    password: 'secret', // optional
+    collection: 'mySessions' // optional, default: sessions
+  },
+  secret: '076ee61d63aa10a125ea872411e433b9'
+};
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
-  app.set('view engine', 'jade');
+  //app.set('view engine', 'jade');
+  app.set('view engine', 'ejs');
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.static(__dirname + '/public'));
-  app.use(app.router);
+  app.use(express.cookieParser());
+  app.use(express.session({
+    secret: 'abdef',
+    store: new MongoStore({
+      db: 'test'
+    })
+  }));
 });
 
 app.configure('development', function(){
@@ -29,13 +53,18 @@ app.configure('production', function(){
 });
 
 // Routes
-
 app.get('/', routes.index);
+
+//serve partials (they should be staticly served)
 app.get('/partials/:name', routes.partials);
+app.get('/partials/login', routes.login);
+app.get('/partials/register', routes.register);
 
 // JSON API
-
 app.get('/api/name', api.name);
+app.post('/api/login', api.login);
+app.post('/api/register', api.register);
+app.get('/api/checkLogin', api.checkLogin);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);

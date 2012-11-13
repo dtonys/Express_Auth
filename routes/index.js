@@ -4,8 +4,16 @@
  */
 
 exports.index = function(req, res){
-  res.render('index');
+  res.render('index.ejs');
 };
+
+/*exports.login = function(req, res){
+  res.render('index.ejs');
+};
+
+exports.register = function(req, res){
+  res.render('index.ejs');
+};*/
 
 exports.partials = function (req, res) {
   var name = req.params.name;

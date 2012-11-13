@@ -1,0 +1,14 @@
+<p> {{prompt}} </p>
+<form>
+  <label for="name">Name</label>
+  <input id="name" type="text" ng-model="name">
+  <br />
+  <label for="password">Password</label>
+  <input id="password" type="password" ng-model="password">
+  <br />
+  <label for="confirm">Name</label>
+  <input id="confirm" type="password" ng-model="confirm">
+  <br />
+  <p>name: {{name}}, password: {{password}}, confirm: {{confirm}}</p>
+  <input type="submit" value="Register" ng-click="register()">
+</form>

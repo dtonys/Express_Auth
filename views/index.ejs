@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="utf-8">
+  <title>SGN-Auth</title>
+</head>
+<body ng-controller='AppCtrl'>
+  <p> SGN Auth with Mongoose </p>
+  <p> {{ message }} </p>
+  
+  <!-- main content -->
+  <div ng-view></div>
+  
+  <a href="/login">login</a>
+  <br />
+  <a href="/register">register</a>
+  <br />
+  <a target="_self" href="/">home</a>
+  <script src="js/lib/angular/angular.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/directives.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<p> {{prompt}} </p>
+<form>
+  <label for="name">Name</label>
+  <input id="name" type="text" ng-model="name">
+  <br />
+  <label for="password">Password</label>
+  <input id="password" type="password" ng-model="password">
+  <p>{{ name }} : {{ password }}</p>
+  <br />
+  <input type="submit" value="Log In" ng-click="login()">
+</form>
