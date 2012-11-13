@@ -5,7 +5,7 @@ exports.init = function(){
   var db = exports.db = mongoose.createConnection('localhost','test');
   db.on('error', console.error.bind(console, 'connection error:'));
   db.once('open', function () {
-    console.log('mongodb connected!');
+    console.log('mongodb connected on test!');
   });
   
   //define schema

@@ -11,7 +11,6 @@ var MongoStore = require('connect-mongo')(express);
 
 var app = module.exports = express();
 
-
 // Configuration
 //mongodb
 dbconfig.init();
@@ -26,8 +25,10 @@ app.configure(function(){
   app.use(express.cookieParser());
   app.use(express.session({
     secret: 'abdef',
+    cookie: { maxAge:  24 * 60 *  10 * 1000 }, //Sessions expire after a day
     store: new MongoStore({
-      db: 'test'
+      db: 'test',
+      clear_interval: 3600  //Interval in seconds to clear expired sessions
     })
   }));
 });
@@ -51,6 +52,7 @@ app.get('/partials/register', routes.register);
 // JSON API
 app.get('/api/name', api.name);
 app.post('/api/login', api.login);
+app.get('/api/logout', api.logout);
 app.post('/api/register', api.register);
 app.get('/api/checkLogin', api.checkLogin);
 

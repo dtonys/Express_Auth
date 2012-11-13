@@ -7,6 +7,7 @@
 <body ng-controller='AppCtrl'>
   <p> SGN Auth with Mongoose </p>
   <p> {{ message }} </p>
+  <p>This session's user: {{ currUser }} </p>
   
   <!-- main content -->
   <div ng-view></div>
@@ -14,6 +15,8 @@
   <a href="/login">login</a>
   <br />
   <a href="/register">register</a>
+  <br />
+  <button ng-click="logout()">logout</button>
   <br />
   <a target="_self" href="/">home</a>
   <script src="js/lib/angular/angular.js"></script>
