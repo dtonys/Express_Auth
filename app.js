@@ -16,18 +16,6 @@ var app = module.exports = express();
 //mongodb
 dbconfig.init();
 
-var conf = {
-  db: {
-    db: 'myDb',
-    host: '192.168.1.111',
-    port: 6646,  // optional, default: 27017
-    username: 'admin', // optional
-    password: 'secret', // optional
-    collection: 'mySessions' // optional, default: sessions
-  },
-  secret: '076ee61d63aa10a125ea872411e433b9'
-};
-
 app.configure(function(){
   app.set('views', __dirname + '/views');
   //app.set('view engine', 'jade');
